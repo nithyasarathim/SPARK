@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - S.P.A.R.K.</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -24,10 +26,10 @@
             <h2 class="text-2xl font-semibold text-black mb-6">Welcome Onboard!</h2>
             <form class="flex flex-col" id="signupForm">
                 <div id="step-1" class="form-step">
-                    <input type="email" placeholder="Email" class="border-2 border-black rounded-md px-4 py-2 mb-6 focus:outline-none focus:border-black w-full">
-                    <input type="password" placeholder="Password" class="border-2 border-black rounded-md px-4 py-2 mb-4 focus:outline-none focus:border-black w-full">
-                    <input type="password" placeholder="Confirm Password" class="border-2 border-black rounded-md px-4 py-2 mb-4 focus:outline-none focus:border-black w-full">
-                    
+                    <input type="email" placeholder="Email" class="border-2 border-black rounded-md px-4 py-2 mb-6 focus:outline-none focus:border-black w-full" id="email">
+                    <input type="password" placeholder="Password" class="border-2 border-black rounded-md px-4 py-2 mb-4 focus:outline-none focus:border-black w-full" id="pwd">
+                    <input type="password" placeholder="Confirm Password" class="border-2 border-black rounded-md px-4 py-2 mb-4 focus:outline-none focus:border-black w-full" id="cpwd">
+                    <p id="warn1" class="text-red-500 text-sm"></p><br>
                     <button type="button" class="bg-black text-white font-semibold py-2 rounded-md hover:bg-gray-800 transition-colors form-button mt-2" id="nextBtn">Next</button>
                 </div>
 
@@ -35,9 +37,9 @@
                     <h3 class="text-lg font-semibold text-black mb-2">Competitive Programming Profiles</h3><br>
                     <input type="text" placeholder="Codechef Username" class="border-2 border-black rounded-md px-4 py-2 mb-4 focus:outline-none focus:border-black w-full">
                     <input type="text" placeholder="Leetcode Username" class="border-2 border-black rounded-md px-4 py-2 mb-4 focus:outline-none focus:border-black w-full">
-                    <p id="warning" class="text-red-500"></p><br>
+                    <p id="warn2" class="text-red-500"></p><br>
                     
-                    <button type="submit" class="bg-black text-white font-semibold py-2 rounded-md hover:bg-gray-800 transition-colors form-button mt-2">Create Account</button>
+                    <button type="submit" class="bg-black text-white font-semibold py-2 rounded-md hover:bg-gray-800 transition-colors form-button mt-2" id="signupBtn">Create Account</button>
                     <button type="button" class="bg-gray-500 text-white font-semibold py-2 rounded-md hover:bg-gray-700 transition-colors form-button mt-4" id="prevBtn">Back</button>
                 </div>
             </form>
