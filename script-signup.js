@@ -13,3 +13,4 @@ const nextBtn = document.getElementById('nextBtn');
             step2.classList.add('hidden');
             step1.classList.remove('hidden');
         });
+        
