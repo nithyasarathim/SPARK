@@ -81,13 +81,13 @@ signup.addEventListener('click',async function(){
         const ccdata=await response2.json();
 
         if(ccdata.error){
-            warn2.innerText='Recheck that CodeChef username. It doesn’t seem to be valid.';
+            warn2.innerText='Recheck that CodeChef username.';
             warn2.style.textAlign='center';
             return;
         }
 
         if(!lcdata.data||!lcdata.data.matchedUser){
-            warn2.innerText='Recheck that LeetCode username. It doesn’t seem to be valid.';
+            warn2.innerText='Recheck that LeetCode username.';
             warn2.style.textAlign='center';
             return;
         }
@@ -117,7 +117,7 @@ async function createUserAccountWithUsernames(email,password,leetcodeUsername,co
             window.location.href='login.html';
         },1700);
     }catch(error){
-        console.error("Error creating user:",error); // Log error details
+        console.error("Error creating user:",error);
         warn2.innerText='Failed to create an account for you. Please try again later.';
         warn2.style.color='red';
     }
