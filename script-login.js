@@ -13,7 +13,6 @@ const firebaseConfig =
 
 firebase.initializeApp(firebaseConfig);
 
-
 document.getElementById('signup-trigger').onclick = () => window.location.href = 'signup.html';
 
 const email =document.getElementById('email-login').value;

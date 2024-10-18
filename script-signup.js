@@ -26,14 +26,30 @@ nextBtn.addEventListener('click',function(){
     const email=document.getElementById('email').value;
     const pwd=document.getElementById('pwd').value;
     const cpwd=document.getElementById('cpwd').value;
+    const passwordPattern=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,20}$/;
 
-    if(email===''||pwd===''||cpwd===''){
+    if(email===''||pwd===''||cpwd==='')
+    {
         warn1.innerText='Please fill in all fields';
         warn1.style.textAlign='center';
-    }else if(pwd!==cpwd){
+    }
+    else if(pwd!==cpwd)
+    {
         warn1.innerText='Passwords do not match';
         warn1.style.textAlign='center';
-    }else{
+    }
+    else if(!email.endsWith('@sece.ac.in'))
+    {
+        warn1.innerText='Email must belong to the sece.ac.in domain';
+        warn1.style.textAlign='center';
+    }
+    else if(pwd.length>=6 && pwd.length<=20 && !passwordPattern.test(pwd))
+    {
+        warn1.innerText='Password must be between 6 and 20 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.';
+        warn1.style.textAlign='center';
+    }    
+    else
+    {
         step1.classList.add('hidden');
         step2.classList.remove('hidden');
         warn1.innerText='';
@@ -62,23 +78,23 @@ signup.addEventListener('click',async function(){
         const ccdata=await response2.json();
     
         if(ccdata.error){
-            warn2.innerText='Error in validating leetcode username';
+            warn2.innerText='Recheck that CodeChef username. It doesn’t seem to be valid.';
             warn2.style.textAlign='center';
             return;
         }
 
         if(!lcdata.data||!lcdata.data.matchedUser){
-            warn2.innerText='Error in validating codechef username ';
+            warn2.innerText='Recheck that LeetCode username. It doesn’t seem to be valid.';
             warn2.style.textAlign='center';
             return;
         }
     
-        warn2.innerText='User created, redirecting to login page ...';
+        warn2.innerText=`You're now an authenticated user! Let's take you to the login page...`;
         warn2.style.color='green';
         warn2.style.textAlign='center';
         setTimeout(()=>{
             window.location.href='login.html';
-        },1500);
+        },1700);
     }catch(error){
         warn2.innerText='Error validating usernames. Please try again later.';
         warn2.style.color='red';
