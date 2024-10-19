@@ -34,7 +34,6 @@ nextBtn.addEventListener('click',function(){
     const email=document.getElementById('email').value;
     const pwd=document.getElementById('pwd').value;
     const cpwd=document.getElementById('cpwd').value;
-    const passwordPattern=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,20}$/;
 
     if(email===''||pwd===''||cpwd===''){
         warn1.innerText='Please fill in all fields';
@@ -44,12 +43,32 @@ nextBtn.addEventListener('click',function(){
         warn1.innerText='Passwords do not match';
         warn1.style.textAlign='center';
     }
-    else if(!email.endsWith('@sece.ac.in')){
-        warn1.innerText='Email must belong to the sece.ac.in domain';
+    else if(pwd.length < 8){
+        warn1.innerText='Password must be atleast 8 characters long';
         warn1.style.textAlign='center';
     }
-    else if(pwd.length>=6&&pwd.length<=20&&passwordPattern.test(pwd)){
-        warn1.innerText='Password must be between 6 and 20 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.';
+    else if(pwd.length > 20){
+        warn1.innerText='Password is too long';
+        warn1.style.textAlign='center';
+    }
+    else if(!/[A-Z]/.test(pwd)){
+        warn1.innerText='Password must contain at least one uppercase letter';
+        warn1.style.textAlign='center';
+    }
+    else if (!/[a-z]/.test(pwd)) {
+        warn1.innerText='Password must contain at least one lowercase letter.';
+        warn1.style.textAlign='center';
+    }
+    else if (!/[0-9]/.test(pwd)){
+        warn1.innerText='Password must contain at least one number.';
+        warn1.style.textAlign='center';
+    }
+    else if (!/[!@#\$%\^\&*\)\(+=._-]+/.test(pwd)) {
+        warn1.innerText = 'Password must contain at least one special character.';
+        warn1.style.textAlign='center';
+   }    
+    else if(!email.endsWith('@sece.ac.in')){
+        warn1.innerText='Email must belong to the sece.ac.in domain';
         warn1.style.textAlign='center';
     }
     else{

@@ -1,4 +1,4 @@
-document.getElementById('signup-trigger').onclick = () => window.location.href = 'signup.html';
+document.getElementById('signup-trigger').onclick = () => window.location.href = 'index.html';
 
 const firebaseConfig = 
 {
@@ -30,41 +30,4 @@ document.getElementById('loginBtn').onclick = () => {
             warning.style.color = 'green';
         })
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-function logIn(email,password) {
-    firebase.auth().signInWithEmailAndPassword(email,password)
-        .then((userCredential)=>{
-            const user=userCredential.user;
-            const userId=user.uid;
-            firebase.database().ref('users/'+userId).once('value')
-                .then((snapshot)=>{
-                    if(snapshot.exists()) {
-                        const userData=snapshot.val();
-                        console.log('User logged in:',user);
-                        console.log('CodeChef Username:',userData.codechef);
-                        console.log('LeetCode Username:',userData.leetcode);
-                    }
-                    else {
-                        console.log('No additional user data found');
-                    }
-                });
-        })
-        .catch((error)=>{
-            const errorCode=error.code;
-            const errorMessage=error.message;
-            console.error('Error during login:',errorCode,errorMessage);
-        });
 }
