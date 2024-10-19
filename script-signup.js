@@ -35,14 +35,6 @@ nextBtn.addEventListener('click',function(){
     const pwd=document.getElementById('pwd').value;
     const cpwd=document.getElementById('cpwd').value;
 
-
-    // Use an if-else block for password validation.
-    //Implement the logic here only. 
-    //Even if you use ChatGPT for assistance, kindly type it out yourself. 
-    //After completing the task, share a screenshot of your code and then push it to the repository.
-
-
-   
     if(email===''||pwd===''||cpwd===''){
         warn1.innerText='Please fill in all fields';
         warn1.style.textAlign='center';
