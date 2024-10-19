@@ -60,12 +60,12 @@ nextBtn.addEventListener('click',function(){
 });
 
 signup.addEventListener('click',async function(){
+    warn2.innerText='';
+    warn2.innerHTML='<img src="loading.gif" alt="loading" style="display:block;margin:auto;height:40px;width=40px">';
     let lcname=document.getElementById('leetcode').value;
     let ccname=document.getElementById('codechef').value;
     const email=document.getElementById('email').value;
     const pwd=document.getElementById('pwd').value;
-
-    warn2.innerText='';
 
     if(lcname===''||ccname===''||email===''||pwd===''){
         warn2.innerText='Please fill in all fields';
@@ -95,14 +95,16 @@ signup.addEventListener('click',async function(){
         await createUserAccountWithUsernames(email,pwd,lcname,ccname);
 
     }catch(error){
-        warn2.innerText='Error validating usernames. Please try again later.';
+        warn2.innerText='Error validating usernames.\nPlease try again later.';
         warn2.style.color='red';
+        warn2.style.textAlign='center';
     }
 });
 
 async function createUserAccountWithUsernames(email,password,leetcodeUsername,codechefUsername){
     console.log(`Creating user: ${email}`)
-    try {
+    try 
+    {
         const userCredential=await createUserWithEmailAndPassword(auth, email, password);
         const user=userCredential.user;
         await setDoc(doc(db,"users",user.uid), {
@@ -110,15 +112,23 @@ async function createUserAccountWithUsernames(email,password,leetcodeUsername,co
             leetcodeUsername:leetcodeUsername,
             codechefUsername:codechefUsername
         });
-        warn2.innerText=`Account created successfully! Let's take you to the login page...`;
+        warn2.innerText=`Account created successfully!\nLet's take you to the login page...`;
         warn2.style.color='green';
         warn2.style.textAlign='center';
         setTimeout(()=>{
             window.location.href='login.html';
         },1700);
-    }catch(error){
+    }
+    catch(error)
+    {
+        if(error.code==='auth/email-already-in-use'){
+            warn2.innerText='Email already in use. Please login.';
+            warn2.style.textAlign='center';
+            return;
+        }
         console.error("Error creating user:",error);
-        warn2.innerText='Failed to create an account for you. Please try again later.';
+        warn2.innerText='Failed to create an account for you.\nPlease try again later.';
         warn2.style.color='red';
+        warn2.style.textAlign='center';
     }
 }
