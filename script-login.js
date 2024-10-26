@@ -40,7 +40,7 @@ async function loginUser(email,password){
     const auth=getAuth();
     try{
         warn.innerText='';
-        warn.innerHTML='<img src="loading.gif" alt="loading" style="display:block;margin:auto;height:40px;width:40px">';
+        warn.innerHTML='<img src="asset/loading.gif" alt="loading" style="display:block;margin:auto;height:40px;width:40px">';
         const userCredential=await signInWithEmailAndPassword(auth,email,password);
         const user=userCredential.user;
         const userRef=doc(getFirestore(),"users",user.uid);

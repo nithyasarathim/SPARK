@@ -80,7 +80,7 @@ nextBtn.addEventListener('click',function(){
 
 signup.addEventListener('click',async function(){
     warn2.innerText='';
-    warn2.innerHTML='<img src="loading.gif" alt="loading" style="display:block;margin:auto;height:40px;width=40px">';
+    warn2.innerHTML='<img src="asset/loading.gifloading.gif" alt="loading" style="display:block;margin:auto;height:40px;width=40px">';
     let lcname=document.getElementById('leetcode').value;
     let ccname=document.getElementById('codechef').value;
     const email=document.getElementById('email').value;
