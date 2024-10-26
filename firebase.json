@@ -1,0 +1,9 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyBmsjwNLq0LPzKyuh-8oi1hJDh6Vu_FyVo",
+    authDomain: "spark-dataserver.firebaseapp.com",
+    projectId: "spark-dataserver",
+    storageBucket: "spark-dataserver.appspot.com",
+    messagingSenderId: "557063328262",
+    appId: "1:557063328262:web:2d89d0b64a012f59786987",
+    measurementId: "G-JL7P874P73"
+}
